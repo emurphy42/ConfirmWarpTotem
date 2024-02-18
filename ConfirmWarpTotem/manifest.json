@@ -6,5 +6,5 @@
   "UniqueID": "JohnPeters.ConfirmWarpTotem",
   "EntryDll": "ConfirmWarpTotem.dll",
   "MinimumApiVersion": "3.0.0",
-  "UpdateKeys": [ "Nexus:???" ]
+  "UpdateKeys": [ "Nexus:20255" ]
 }
