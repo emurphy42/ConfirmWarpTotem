@@ -171,12 +171,19 @@ namespace ConfirmWarpTotem
             // Indicate that it was confirmed
             fromConfirmation = true;
 
+            // Retain a reference to warpTotemBeingConfirmed before .performUseAction() clears it
+            var warpTotemJustConfirmed = warpTotemBeingConfirmed;
+
             // Trigger normal action
             ModMonitor.Log($"[Confirm Warp Totem] Processing confirmation", LogLevel.Trace);
             warpTotemBeingConfirmed.performUseAction(locationBeingConfirmed);
 
-            // Use up the totem
-            who.reduceActiveItemByOne();
+            // Use up the totem if it was in inventory
+            // Ignore other stuff equivalent to warp totems, e.g. Shrouded Figure at Night Market
+            if (who.ActiveItem == warpTotemJustConfirmed)
+            {
+                who.reduceActiveItemByOne();
+            }
         }
 
         private static void totemWarpCanceled(Farmer who)
